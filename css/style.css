@@ -50,3 +50,7 @@ a{
 #titreCommentaire {
     font-size : 100%;
 }
+
+#txtCommentaire {
+    width: 50%;
+}
