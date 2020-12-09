@@ -34,9 +34,20 @@ class Vue {
     private $titre;
 
     
-    public function __construct($action)
+    public function __construct($action, $controleur = '')
     {
-        $this->fichier = 'Vue/vue' . $action . '.php'; 
+        // Détermination du nom du fichier vue à partir de l'action et du constructeur
+        $fichier = 'Vue/';
+        if ($controleur != '') 
+        {
+            $fichier = $fichier . $controleur . '/'; // exemple "Vue/Accueil/"
+        }
+        $this->fichier = $fichier . $action . '.php'; 
+        // exemple : "Vue/Accueil.php" si le controleur est vide
+        // exemple : "Vue/Accueil/accueil.php" si le controleur n'est pas vide
+
+        //pre_var_dump( 'L 48 Vue.php',$this->fichier, true); 
+
     }
 
     /**
