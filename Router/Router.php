@@ -3,6 +3,7 @@
 require_once 'Controleur/ControleurAccueil.php';
 require_once 'Controleur/ControleurBillet.php';
 require_once 'Entite/Vue.php';
+require_once 'outil/outil.php';
 
 
 class Router{
@@ -18,7 +19,7 @@ class Router{
 
     /**
      * Recherche un paramètre dans un tableau 
-     * exemple dans un $_GET ou dans un $_POST
+     * exemple dans un $_GET ou dans un $_POST en fonction du besoin.
      */
     public function getParametre($_verbe_http, $nom)
     {
@@ -53,8 +54,7 @@ class Router{
                         throw new Exception("Identifiant de billet non défini");
                     }
                 }
-
-                if ($_GET['action'] === 'commenter') 
+                elseif ($_GET['action'] === 'commenter') 
                 {
                     ///var_dump($_POST);die;
                     $auteur = $this->getParametre($_POST, 'auteur');

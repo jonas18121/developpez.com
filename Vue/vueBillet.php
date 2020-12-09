@@ -18,7 +18,7 @@
     <p><?= $commentaire['com_contenu'] ?></p>
 <?php endforeach ?>
 
-<form action="index.php?action=commenter&id=<?= $billet['id'] ?>" method="post">
+<form action="index.php?action=commenter" method="post">
     <div>
         <input type="text" name='auteur' placeholder='Votre pseudo' required>
     </div>
