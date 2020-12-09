@@ -19,7 +19,7 @@
     <hr>
 <?php endforeach ?>
 
-<form action="index.php?action=commenter" method="post">
+<form action="index.php?controleur=billet&action=commenter" method="post">
     <div>
         <input type="text" name='auteur' placeholder='Votre pseudo' required>
     </div>

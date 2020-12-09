@@ -3,8 +3,10 @@
 require_once 'Model/BilletModel.php';
 require_once 'Model/CommentaireModel.php';
 require_once 'Entite/Vue.php';
+require_once 'Entite/Controleur.php';
 
-class ControleurAccueil{
+class ControleurAccueil extends Controleur 
+{
 
     private $billetModel;
 
@@ -19,7 +21,14 @@ class ControleurAccueil{
     function accueil()
     {
         $billets = $this->billetModel->getBillets();
-        $vue = new Vue('Accueil'); //require_once 'Vue/vueAccueil.php';
+        $vue = new Vue('accueil', 'Accueil'); //require_once 'Vue/vueAccueil.php';
+        $vue->generer(['billets' => $billets]);
+    }
+
+    public function index()
+    {
+        $billets = $this->billetModel->getBillets();
+        $vue = new Vue('accueil', 'Accueil'); //require_once 'Vue/vueAccueil.php';
         $vue->generer(['billets' => $billets]);
     }
 }
