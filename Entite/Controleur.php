@@ -62,6 +62,9 @@ abstract class Controleur
 
     /**
      * Génère la vue associée au contrôleur courant
+     * 
+     * permet d'automatiser le lien entre contrôleur et vue 
+     * les paramètres de création de la vue sont déduits du nom du contrôleur et de l'action à réaliser
      */
     protected function genereVue($donnees_vue = [])
     {

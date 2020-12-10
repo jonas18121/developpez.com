@@ -21,19 +21,25 @@ class Vue {
     /** 
      * Nom du fichier associé à la vue
      * 
-     * exemple : "Vue/vueAccueil.php"
+     * exemple : "Vue/Accueil/accueil.php"
      *   
      */
     private $fichier;
 
     /**
      * est définit depuis la vue spécifique 
-     * exemple : le titre est placé dans "Vue/vueAccueil.php" 
+     * exemple : le titre est placé dans "Vue/Accueil/accueil.php"
      * dans cette forme $this->titre = Accueil
      */
     private $titre;
 
-    
+    /**
+     * chaque vue doit résider dans le sous-répertoire Vue/ ;
+     * 
+     * dans ce répertoire Vue/ , chaque vue est stockée dans un sous-répertoire portant le nom du contrôleur associé à la vue ;
+     * 
+     * chaque fichier vue porte directement le nom de l'action aboutissant à l'affichage de cette vue.
+     */
     public function __construct($action, $controleur = '')
     {
         // Détermination du nom du fichier vue à partir de l'action et du constructeur
@@ -43,7 +49,7 @@ class Vue {
             $fichier = $fichier . $controleur . '/'; // exemple "Vue/Accueil/"
         }
         $this->fichier = $fichier . $action . '.php'; 
-        // exemple : "Vue/Accueil.php" si le controleur est vide
+        // exemple : "Vue/accueil.php" si le controleur est vide
         // exemple : "Vue/Accueil/accueil.php" si le controleur n'est pas vide
 
         //pre_var_dump( 'L 48 Vue.php',$this->fichier, true); 
@@ -61,9 +67,15 @@ class Vue {
         // Génération de la partie spécifique de la vue , exemple ce qui est dans le ob_start()
         $contenu = $this->genererFichier($this->fichier, $donnees);
 
+        // On définit une variable locale accessible par la vue pour la racine Web
+        // Il s'agit du chemin vers le site sur le serveur Web
+        // Nécessaire pour les URI de type controleur/action/id
+        $racine_web = Configuration::get('racine_web', '/');
+
         
         // Génération du gabarit commun utilisant la partie spécifique
-        $vue = $this->genererFichier('Vue/gabarit.php', ['titre' => $this->titre, 'contenu' => $contenu]);
+        $vue = $this->genererFichier('Vue/gabarit.php', ['titre' => $this->titre, 'contenu' => $contenu, 'racine_web' => $racine_web]);
+        //pre_var_dump( 'L 75 Vue.php',$vue, true);
         
         echo $vue; // Renvoi de la vue au navigateur
     }

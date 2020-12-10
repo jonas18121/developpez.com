@@ -25,10 +25,15 @@ class ControleurAccueil extends Controleur
         $vue->generer(['billets' => $billets]);
     }
 
+    /**
+     * function imposé par la class Controleur
+     * action par défaut (quand le paramètre action n'est pas défini dans la requête).
+     */
     public function index()
     {
-        $billets = $this->billetModel->getBillets();
+        $this->accueil();
+        /* $billets = $this->billetModel->getBillets();
         $vue = new Vue('accueil', 'Accueil'); //require_once 'Vue/vueAccueil.php';
-        $vue->generer(['billets' => $billets]);
+        $vue->generer(['billets' => $billets]); */
     }
 }

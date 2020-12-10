@@ -1,0 +1,6 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+# ^inconnu.html$ = ce qu'on veut, et qui n'exite pas dans mon site
+# test.html = il existe et est écrit en dur dans mon site
+RewriteRule ^inconnu.html$  test.html [L]
