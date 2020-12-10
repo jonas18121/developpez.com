@@ -7,6 +7,10 @@ require_once 'Entite/Vue.php';
 require_once 'outil/outil.php';
 
 
+/**
+ * Le routage d'une requête url entrante consiste à analyser cette requête quel soit en $_GET ou en $_POST
+ *  afin d'en déduire le contrôleur à utiliser et l'action (méthode du contrôleur) à appeler.
+ */
 class Router{
 
     /* private $controleurAccueil;
@@ -44,6 +48,13 @@ class Router{
 
     /**
      * Route une URL entrante : exécute l'action associée
+     * 
+     * routerRequete() instancie un objet URL en fusionnant les données des variables superglobales $_GET et $_POST, 
+     * afin de pouvoir analyser toute requête issue soit d'une commande HTTP GET, 
+     * soit d'une commande HTTP POST
+     * 
+     * Ensuite, cette méthode fait appel à deux méthodes internes 
+     * afin d'instancier le contrôleur approprié et d'exécuter l'action correspondant à la requête reçue
      */
     public function routerRequete (){
 
@@ -81,17 +92,17 @@ class Router{
             // retourne la valeur du paramètre controleur qui est dans l'url
             $nom_controleur = $fusion_param_url->getParametre('controleur');
 
-            // On met la première lettre en majuscule
+            // On met la première lettre du nom du controleur en majuscule
             $nom_controleur = ucfirst(strtolower($nom_controleur));
         }
         else {
             $nom_controleur = 'Accueil'; // Contrôleur par défaut
         }
 
-        //exemple : "ControleurAccueil"
+        //exemple : "ControleurBillet"
         $classe_controleur = 'Controleur' . $nom_controleur; 
 
-        //exemple : "Controleur/ControleurAccueil.php"
+        //exemple : "Controleur/ControleurBillet.php"
         $fichier_controleur = 'Controleur/' . $classe_controleur . '.php'; 
 
         //pre_var_dump('L 76 Router.php', $fichier_controleur, true);

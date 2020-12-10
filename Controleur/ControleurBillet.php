@@ -19,10 +19,11 @@ class ControleurBillet extends Controleur
 
     /**
      * function imposé par la class Controleur
+     * action par défaut (quand le paramètre action n'est pas défini dans la requête).
      */
     public function index()
     {
-
+        $this->billet();
     }
 
     
@@ -61,6 +62,9 @@ class ControleurBillet extends Controleur
 
         $this->commentaireModel->addCommentaire($auteur, $contenu, $id_billet);
 
-        $this->billet();
+        // $this->billet();
+
+        // Exécution de l'action par défaut pour réafficher la liste des billets
+        $this->executerAction("billet");
     }
 }

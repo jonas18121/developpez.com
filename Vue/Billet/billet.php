@@ -12,6 +12,7 @@
 <header>
     <h2 class="titreCommentaire">Commentaire pour <?= $billet['bil_titre'] ?> </h2>
 </header>
+<?php //pre_var_dump('ok', null, true); ?>
 
 <?php foreach ($commentaires as $commentaire) : ?>
     <h3><?= $commentaire['com_auteur'] ?></h3>
@@ -19,6 +20,7 @@
     <hr>
 <?php endforeach ?>
 
+<!-- "index.php?controleur=billet&action=commenter" -->
 <form action="index.php?controleur=billet&action=commenter" method="post">
     <div>
         <input type="text" name='auteur' placeholder='Votre pseudo' required>
